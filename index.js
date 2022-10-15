@@ -1,8 +1,11 @@
+require("dotenv").config()
+const {PORT} = process.env
 const express = require("express");
 const app = express();
 const User = require("./db/User");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+
 require("./db/config");
 app.use(cors());
 app.use(bodyParser.json());
@@ -34,4 +37,6 @@ app.post("/login", async (req, res) => {
     res.send({ msg: "login failed" });
   }
 });
-app.listen(8090, () => console.log("app is running on 8090"));
+
+console.log("Running on: " + PORT)
+app.listen(PORT, () => console.log("app is running on " + PORT));
